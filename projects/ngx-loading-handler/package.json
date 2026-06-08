@@ -2,6 +2,8 @@
   "name": "ngx-loading-handler",
   "version": "0.0.1",
   "description": "A minimal Angular library that wraps any mutation in a signals-based command object exposing loading, error, and result state. Signals-first, zoneless-compatible, zero runtime dependencies.",
+  "homepage": "https://hoplaGeiss.github.io/ngx-loading-handler/",
+  "license": "MIT",
   "keywords": [
     "angular",
     "signals",
