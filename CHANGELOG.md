@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/HoplaGeiss/ngx-loading-handler/compare/v1.0.0...v1.0.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* tests & license ([79fb357](https://github.com/HoplaGeiss/ngx-loading-handler/commit/79fb357810430efd1e4dd5deb6023a421b23d924))
+
 # 1.0.0 (2026-06-08)
 
 
