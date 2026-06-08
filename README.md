@@ -289,4 +289,4 @@ ng serve demo      # demo app at localhost:4200
 
 ## License
 
-MIT
+[MIT](LICENSE)
