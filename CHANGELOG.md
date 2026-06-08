@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/HoplaGeiss/ngx-loading-handler/compare/v1.0.1...v1.0.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* trigger publish ([2785aa7](https://github.com/HoplaGeiss/ngx-loading-handler/commit/2785aa72d0c2d1a4922e99ae9418f9122267de0c))
+
 ## [1.0.1](https://github.com/HoplaGeiss/ngx-loading-handler/compare/v1.0.0...v1.0.1) (2026-06-08)
 
 
