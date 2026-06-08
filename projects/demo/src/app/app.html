@@ -1,0 +1,123 @@
+<ngx-loading-bar [command]="barCommand" />
+
+<div class="page">
+  <header class="hero">
+    <h1>ngx-loading-handler</h1>
+    <p class="tagline">Signals-based mutation state for Angular. One line replaces twenty.</p>
+  </header>
+
+  <main class="cards">
+
+    <!-- CARD 1: Basic success -->
+    <section class="card">
+      <h2>Basic usage</h2>
+      <p class="desc">A single <code>injectCommand()</code> call manages loading, result, and error state automatically.</p>
+
+      <div class="code-block">
+        <pre><code>saveCommand = injectCommand(
+  () =&gt; this.orderService.save(order)
+);</code></pre>
+      </div>
+
+      <div class="demo-row">
+        <button
+          class="btn btn--primary"
+          (click)="saveCommand.execute()"
+          [disabled]="saveCommand.isLoading()"
+          [attr.aria-busy]="saveCommand.isLoading()"
+        >
+          @if (saveCommand.isLoading()) {
+            Saving…
+          } @else {
+            Save order
+          }
+          <ngx-loading-spinner [command]="saveCommand" />
+        </button>
+
+        <button class="btn btn--ghost" (click)="saveCommand.reset()" [disabled]="saveCommand.isLoading()">
+          Reset
+        </button>
+      </div>
+
+      @if (saveCommand.hasExecuted() && !saveCommand.isLoading()) {
+        <div class="status status--success" role="status">
+          ✓ Saved — got ID {{ saveCommand.result()?.id }}
+        </div>
+      }
+    </section>
+
+    <!-- CARD 2: Error handling -->
+    <section class="card">
+      <h2>Error handling</h2>
+      <p class="desc"><code>hasError()</code> and <code>error()</code> signals are set automatically on failure. No try/catch required.</p>
+
+      <div class="code-block">
+        <pre><code>failCommand = injectCommand(
+  () =&gt; this.service.flaky(),
+  &#123; onError: (err) =&gt; toast.error(err.message) &#125;
+);</code></pre>
+      </div>
+
+      <div class="demo-row">
+        <button
+          class="btn btn--primary"
+          (click)="errorCommand.execute()"
+          [disabled]="errorCommand.isLoading()"
+          [attr.aria-busy]="errorCommand.isLoading()"
+        >
+          @if (errorCommand.isLoading()) {
+            Calling…
+          } @else {
+            Call failing endpoint
+          }
+          <ngx-loading-spinner [command]="errorCommand" />
+        </button>
+
+        <button class="btn btn--ghost" (click)="errorCommand.reset()" [disabled]="errorCommand.isLoading()">
+          Reset
+        </button>
+      </div>
+
+      @if (errorCommand.hasError()) {
+        <div class="status status--error" role="alert">
+          ✗ {{ $any(errorCommand.error())?.message }}
+        </div>
+      }
+    </section>
+
+    <!-- CARD 3: Loading bar -->
+    <section class="card">
+      <h2>Loading bar</h2>
+      <p class="desc">
+        Drop <code>&lt;ngx-loading-bar&gt;</code> once at the top of your shell. It shows a fixed progress bar while any command is loading.
+      </p>
+
+      <div class="code-block">
+        <pre><code>&lt;!-- app.html --&gt;
+&lt;ngx-loading-bar [command]="pageLoadCommand" /&gt;</code></pre>
+      </div>
+
+      <div class="demo-row">
+        <button
+          class="btn btn--primary"
+          (click)="barCommand.execute()"
+          [disabled]="barCommand.isLoading()"
+          [attr.aria-busy]="barCommand.isLoading()"
+        >
+          @if (barCommand.isLoading()) {
+            Loading page…
+          } @else {
+            Trigger loading bar
+          }
+        </button>
+
+        <button class="btn btn--ghost" (click)="barCommand.reset()" [disabled]="barCommand.isLoading()">
+          Reset
+        </button>
+      </div>
+
+      <p class="hint">Watch the top of this page ↑</p>
+    </section>
+
+  </main>
+</div>
